@@ -11,8 +11,6 @@ contract MockReentrancyGuardTransient is ReentrancyGuardTransient {
 
     uint256 public enterTimes;
 
-    bool public transientOnlyOnMainnet;
-
     // Mocks
 
     function isReentrancyGuardLocked() public view returns (bool locked) {
@@ -44,14 +42,6 @@ contract MockReentrancyGuardTransient is ReentrancyGuardTransient {
 
     function callUnguardedToReadGuarded() public {
         readCallbackTargetGuarded();
-    }
-
-    function setTransientOnlyOnMainnet(bool value) public {
-        transientOnlyOnMainnet = value;
-    }
-
-    function _useTransientReentrancyGuardOnlyOnMainnet() internal view override returns (bool) {
-        return transientOnlyOnMainnet;
     }
 
     // Targets
